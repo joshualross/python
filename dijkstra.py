@@ -1,9 +1,4 @@
-
-
-
-# A - 5 - B - 2 - D
-#  \             /
-#   - 10 - C - 3
+"""A simple dijkstra implementation."""
 
 class Edge(object):
 
@@ -87,14 +82,13 @@ class Dijkstras(object):
         :param Node from_node:
         :param Node to_node:
         """
+        print "Shortest path from {} to {}".format(from_node.name, to_node.name)
         current = from_node
         solution = {current.name: 0}
         visited = []
-        # the start and end nodes are identical
         if from_node.name == to_node.name:
             return "No route necessary"
 
-        print solution
         while current:
             if current.name == to_node.name:
                 return "Solution {}".format(solution.get(to_node.name))
@@ -109,7 +103,6 @@ class Dijkstras(object):
                 elif solution.get(edge.to_node.name) > weight:
                     solution.update({edge.to_node.name: weight})
 
-            print solution
             # find the lowest weight, go to that node next
             lowest = None
             next_node = None
@@ -146,8 +139,6 @@ graph.add_edge(Edge(nodes['D'], nodes['F'], 8))
 graph.add_edge(Edge(nodes['E'], nodes['F'], 1))
 graph.add_edge(Edge(nodes['F'], nodes['G'], 10))
 # no edge for H
-
-print graph
 
 dijkstras = Dijkstras(graph)
 print dijkstras.shortest(nodes['A'], nodes['A'])  # No route necessary
